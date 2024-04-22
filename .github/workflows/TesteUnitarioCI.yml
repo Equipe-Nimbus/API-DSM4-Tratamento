@@ -1,0 +1,47 @@
+name: Teste unitário
+
+on: pull_request
+    
+
+jobs:
+  buildETeste:
+
+    runs-on: windows-2019
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: instalando dempendencias
+      run: npm install
+
+    - name: rodando testes
+      id: test
+      run: npm run test
+
+    - name: Aprovando pull_request se os testes passarem
+      id: aprovado
+      if: steps.test.outcome == 'success'
+      uses: juliangruber/approve-pull-request-action@v2 
+      with:
+          github-token: ${{ secrets.ADM_TOKEN }}
+          number: ${{ github.event.pull_request.number }}
+
+    - name: Merge Pull Request
+      if: steps.test.outcome == 'success' && steps.aprovado.outcome == 'success'
+      uses: juliangruber/merge-pull-request-action@v1
+      with:
+        github-token: ${{ secrets.ADM_TOKEN }}
+        number: ${{ github.event.pull_request.number }}
+        method: squash
+
+    - run: echo "HEAD:${{github.event.pull_request.head.repo.name}}, BASE:${{github.event.pull_request.base.repo.name}}"
+
+    
