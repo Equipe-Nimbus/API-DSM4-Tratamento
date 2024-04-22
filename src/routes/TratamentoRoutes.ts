@@ -1,10 +1,8 @@
 import { Router, Request, Response } from "express";
+import TratamentoController from "../Controllers/TratamentoController";
 
 const tratamentoRoutes = Router()
 
-tratamentoRoutes.post("/aviso", (req:Request, res:Response)=>{
-    console.log("Aviso recebido")
-    res.send("Aviso recebido")
-})
+tratamentoRoutes.post("/aviso", TratamentoController.tratar)
 
 export default tratamentoRoutes
