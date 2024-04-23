@@ -2,6 +2,7 @@ import express from "express";
 import { config } from 'dotenv';
 import tratamentoRoutes from "./routes/TratamentoRoutes";
 import cors from "cors";
+import PgDataSource from "./ConfigPostgres";
 
 config();
 const app = express();
@@ -12,6 +13,7 @@ const corsOptions = {
   };
   
 app.use(cors(corsOptions));
+
 
 app.use("/tratamento", tratamentoRoutes)
 
