@@ -6,6 +6,7 @@ import EstruturaMedicoes from "./EstruturaMedicoes";
 import InsereMedicoesNoRelacional from "./InsereMedicoesNoRelacional";
 import PegaTipoParatros from "./PegaTipoParatros";
 
+
 class TrataMedicao{
     async tratar(medicoes:any[]){
         medicoes.forEach(async medicao => {
