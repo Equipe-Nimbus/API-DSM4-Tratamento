@@ -7,7 +7,6 @@ class EstruturaMedicoes{
     estruturar(tipoParametros:TipoParametro[], medicao:MedicaoMongo){
         let listaMedicoesRelacionais:Medicao[] = []
         tipoParametros.forEach(tipoParametro => {
-            console.log(tipoParametro)
             for(const chave in medicao.medicoes){
                 if(chave.toUpperCase() == tipoParametro.nomeTipoParametro){
                     let medicaoRelacional = new Medicao()
