@@ -9,7 +9,7 @@ export class Medicao {
     @PrimaryGeneratedColumn()
     idMedicao: number;
 
-    @Column({nullable: false})
+    @Column("decimal", {nullable: false, precision: 10, scale: 2})
     valorMedida:number
 
     @Column({nullable: false})
