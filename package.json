@@ -6,7 +6,10 @@
   "scripts": {
     "start": "ts-node ./src",
     "dev": "ts-node-dev ./src",
-    "test": "jest"
+    "test": "jest",
+    "migration:generate": "typeorm-ts-node-commonjs -d ./src/ConfigPostgres.ts migration:generate ./src/migrations/default",
+    "migration:run": "typeorm-ts-node-commonjs -d ./src/ConfigPostgres.ts migration:run",
+    "migration:revert": "typeorm-ts-node-commonjs -d ./src/ConfigPostgres.ts migration:revert"
   },
   "jest": {
     "preset": "ts-jest",
