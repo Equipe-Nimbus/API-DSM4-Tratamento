@@ -4,7 +4,8 @@ import { TipoParametro } from "../entities/TipoParametro";
 import MedicaoMongo from "../interfaces/MedicaoMongo";
 
 class EstruturaMedicoes{
-    estruturar(tipoParametros:TipoParametro[], medicao:MedicaoMongo){
+
+    estruturar(tipoParametros:TipoParametro[], medicao:MedicaoMongo):Medicao[]{
         let listaMedicoesRelacionais:Medicao[] = []
         tipoParametros.forEach(tipoParametro => {
             for(const chave in medicao.medicoes){
