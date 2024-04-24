@@ -1,6 +1,7 @@
 
 import MedicaoMongo from "../interfaces/MedicaoMongo";
 import ConfereExistenciaEstacao from "./ConfereExistenciaEstacao";
+import ConfereMedicaoExistente from "./ConfereMedicaoExistente";
 import DeletaDadosMedicoes from "./DeletaDadosMedicoes";
 import EstruturaMedicoes from "./EstruturaMedicoes";
 import InsereMedicoesNoRelacional from "./InsereMedicoesNoRelacional";
@@ -13,7 +14,10 @@ class TrataMedicao{
             if(estacao == undefined) return;
             const tipoParametros = await PegaTipoParatros.pegar(medicao.uuid)
             if(tipoParametros == undefined) return;
-            const medicoesEstruturadas = EstruturaMedicoes.estruturar(tipoParametros, medicao)
+            let medicoesEstruturadas = EstruturaMedicoes.estruturar(tipoParametros, medicao)
+            medicoesEstruturadas = await ConfereMedicaoExistente.conferir(medicoesEstruturadas)
+            console.log("DEPOIS DA CONFERENCIA", medicoesEstruturadas)
+            if(medicoesEstruturadas.length == 0) return;
             await InsereMedicoesNoRelacional.inserir(medicoesEstruturadas);
         });
         await DeletaDadosMedicoes.deletar();
