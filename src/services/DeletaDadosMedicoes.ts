@@ -9,6 +9,7 @@ class DeletaDadosMedicoes{
         await MongoDBMedicoes.connect()
         const colecaoMedicao = MongoDBMedicoes.db("MedicoesNimbus").collection("MedicoesNimbus");
         await colecaoMedicao.deleteMany({_id: { $in: listaDeItens }});
+        await MongoDBMedicoes.close()
     }
 
 }
