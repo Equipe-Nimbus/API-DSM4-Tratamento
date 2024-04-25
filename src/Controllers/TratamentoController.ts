@@ -3,6 +3,7 @@ import PegaDadosMedicoes from "../services/PegaDadosMedicoes";
 import TrataMedicao from "../services/TrataMedicao";
 import MedicaoMongo from "../interfaces/MedicaoMongo";
 
+
 class TratamentoController{
 
     async tratar(req:Request, res:Response){
