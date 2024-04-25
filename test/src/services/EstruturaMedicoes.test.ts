@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb"
 import { Estacao } from "../../../src/entities/Estacao"
 import { Medicao } from "../../../src/entities/Medicao"
 import { Parametro } from "../../../src/entities/Parametro"
@@ -41,6 +42,7 @@ let listaTipoParametro:TipoParametro[] = [
 ]
 
 let medicao:MedicaoMongo = {
+    _id: new ObjectId(),
     uuid: "32134",
     unix: 0,
     bateria: 0,
