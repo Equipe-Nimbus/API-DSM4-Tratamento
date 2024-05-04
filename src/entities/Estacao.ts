@@ -40,7 +40,7 @@ export class Estacao {
   @Column({nullable: false, type: 'integer', default: 100})
   bateriaEstacao: number;
 
-  @Column({nullable: true, type: 'integer', unique: true})
+  @Column({nullable: true, type: 'integer'})
   unixtimeBateriaEstacao: number;
 
   @ManyToMany(()=>TipoParametro, tipoParametros=>tipoParametros.estacoes)
