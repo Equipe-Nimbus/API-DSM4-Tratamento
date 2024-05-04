@@ -7,8 +7,8 @@ class ConfereMedicaoExistente{
         const repositorioMedicao = PgDataSource.getRepository(Medicao)
         let listaFinal:Medicao[]=[]
         for (const medicao of medicoesEstruturadas) {
-            const resultado = await repositorioMedicao.findOne({where: {unixTime: medicao.unixTime, valorMedida: medicao.valorMedida, parametro: medicao.parametro}})
-            const jaEstaNaLista = listaFinal.find(medicaoDaLista => {(medicaoDaLista.unixTime == medicao.unixTime && medicaoDaLista.valorMedida == medicao.valorMedida && medicaoDaLista.parametro == medicao.parametro) && listaFinal.length != 0})
+            const resultado = await repositorioMedicao.findOne({where: {unixTime: medicao.unixTime,  parametro: medicao.parametro}})
+            const jaEstaNaLista = listaFinal.find(medicaoDaLista => {((medicaoDaLista.unixTime == medicao.unixTime && medicaoDaLista.parametro == medicao.parametro)) && listaFinal.length != 0})
             if (resultado == null && jaEstaNaLista == undefined)
                 listaFinal.push(medicao)
         }

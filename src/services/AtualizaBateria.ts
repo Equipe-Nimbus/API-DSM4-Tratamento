@@ -8,7 +8,12 @@ class AtualizaBateria{
         const repositorioEstacao = PgDataSource.getRepository(Estacao)
         estacao.bateriaEstacao = medicao.bateria
         estacao.unixtimeBateriaEstacao = medicao.unix
-        await repositorioEstacao.save(estacao)
+        try{
+            await repositorioEstacao.save(estacao)
+            return "sucesso"
+        } catch(error){
+            return "falha"
+        }
     }
 
 }
