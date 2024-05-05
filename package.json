@@ -1,0 +1,44 @@
+{
+  "name": "api-dsm4-tratamento",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src",
+    "dev": "ts-node-dev ./src",
+    "test": "jest",
+    "migration:generate": "typeorm-ts-node-commonjs -d ./src/ConfigPostgres.ts migration:generate ./src/migrations/default",
+    "migration:run": "typeorm-ts-node-commonjs -d ./src/ConfigPostgres.ts migration:run",
+    "migration:revert": "typeorm-ts-node-commonjs -d ./src/ConfigPostgres.ts migration:revert"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/test/**/*.test.ts"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^5.9.2",
+    "pg": "^8.11.5",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/mongodb": "^4.0.7",
+    "@types/pg": "^8.11.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}
