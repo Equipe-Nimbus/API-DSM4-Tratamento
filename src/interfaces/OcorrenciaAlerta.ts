@@ -2,10 +2,10 @@
 export default interface OcorrenciaAlertaMongo{
     idEstacao:string,
     idAlerta:number,
-    idParametro:number,
+    idTipoParametro:number,
     nomeEstacao:string,
     nomeAlerta:string,
-    nomeParametro:string,
+    nomeTipoParametro:string,
     dia:string,
     mes:string,
     ano:string,
