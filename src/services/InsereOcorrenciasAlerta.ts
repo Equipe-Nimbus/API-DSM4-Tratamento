@@ -1,4 +1,3 @@
-
 import MongoDBOcorrencia from "../ConfigMongoDBOcorrencia";
 import { Estacao } from "../entities/Estacao";
 import { Medicao } from "../entities/Medicao";
@@ -9,7 +8,12 @@ class InsereOcorrenciasAlerta{
 
     async inserir(estacao:Estacao, medicoes:Medicao[], tipoParametro:TipoParametro[]){
         const listaOcorrencias = GeraListaOcorrenciaAlerta.criarListaOcorrencia(estacao, medicoes, tipoParametro)
-        console.log(listaOcorrencias)
+        console.log("Lista ocorrencias: ",listaOcorrencias)
+
+        if (listaOcorrencias.length === 0) {
+            return 'Não há alertas para inserir.';
+        }
+
         await MongoDBOcorrencia.connect().then(async()=>{
             const colecaoOcorrencia = MongoDBOcorrencia.db("BackNimbusNaoRelacional").collection("OcorrenciaAlertas")
             await colecaoOcorrencia.insertMany(listaOcorrencias);
