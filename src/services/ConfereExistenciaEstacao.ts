@@ -6,7 +6,7 @@ class ConfereExistenciaEstacao{
         const repositorioEstacao = PgDataSource.getRepository(Estacao)
         let estacao:Estacao
         try{
-            estacao = await repositorioEstacao.findOne({where:{idEstacao:idPlaca}})
+            estacao = await repositorioEstacao.findOne({where:{idPlacaEstacao:idPlaca}})
             return estacao
         } catch{
             return undefined

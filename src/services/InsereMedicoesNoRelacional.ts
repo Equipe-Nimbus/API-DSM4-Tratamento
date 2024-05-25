@@ -6,7 +6,6 @@ class InsereMedicoesNoRelacional {
     async inserir(medicoes:Medicao[]){
         const repositorioMedicao = PgDataSource.getRepository(Medicao)
         let medicoesComId = await repositorioMedicao.save(medicoes)
-        console.log(medicoesComId)
         return medicoesComId
     }
 

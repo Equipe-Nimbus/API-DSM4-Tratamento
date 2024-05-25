@@ -40,7 +40,7 @@ export class Estacao {
   @Column({nullable:false, default:true})
   statusEstacao: boolean;
 
-  @Column({nullable: false, type: 'integer', default: 100})
+  @Column({nullable: false, type: 'decimal', precision: 5, scale: 2, default: 100})
   bateriaEstacao: number;
 
   @Column({nullable: true, type: 'integer'})

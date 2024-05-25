@@ -12,6 +12,7 @@ class AtualizaBateria{
             await repositorioEstacao.save(estacao)
             return "sucesso"
         } catch(error){
+            console.log(error);
             return "falha"
         }
     }

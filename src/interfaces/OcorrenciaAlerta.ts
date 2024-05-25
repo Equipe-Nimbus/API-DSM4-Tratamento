@@ -10,6 +10,8 @@ export default interface OcorrenciaAlertaMongo{
     mes:string,
     ano:string,
     medicao:number,
+    unidadeMedicao: string,
+    unixtime: number,
     condicaoAlerta:string,
     valorAlerta:number,
     estadoEstacao:string,
