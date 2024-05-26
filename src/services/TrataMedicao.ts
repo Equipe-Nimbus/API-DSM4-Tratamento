@@ -12,11 +12,11 @@ import PegaTipoParatros from "./PegaTipoParatros";
 class TrataMedicao{
     async tratar(medicoes:MedicaoMongo[]){
         medicoes.forEach(async medicao => {
-            const estacao = await ConfereExistenciaEstacao.conferir(medicao.uuid)
+            const estacao = await ConfereExistenciaEstacao.conferir(medicao.idPlacaEstacao)
             if(estacao == undefined) return;
             const resultado = await AtualizaBateria.atualizar(medicao, estacao)
             if(resultado == "falha"){console.log("Requisição mal formulada"); return;}
-            const tipoParametros = await PegaTipoParatros.pegar(medicao.uuid)
+            const tipoParametros = await PegaTipoParatros.pegar(estacao.idEstacao);
             if(tipoParametros == undefined) return;
             let medicoesEstruturadas = EstruturaMedicoes.estruturar(tipoParametros, medicao)
             medicoesEstruturadas = await ConfereMedicaoExistente.conferir(medicoesEstruturadas)
