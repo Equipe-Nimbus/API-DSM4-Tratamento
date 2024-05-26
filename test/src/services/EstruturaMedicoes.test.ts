@@ -43,7 +43,7 @@ let listaTipoParametro:TipoParametro[] = [
 
 let medicao:MedicaoMongo = {
     _id: new ObjectId(),
-    uuid: "32134",
+    idPlacaEstacao: "32134",
     unix: 0,
     bateria: 0,
     medicoes: {}

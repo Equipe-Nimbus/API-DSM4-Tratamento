@@ -6,8 +6,8 @@ const DB_URL = process.env.DB_URL_Postgres;
 
 const PgDataSource = new DataSource({
     //DB online elephantSQL
-    database: 'bqlvykqu',
-    url:DB_URL,
+    //database: 'bqlvykqu',
+    //url:DB_URL,
 
     //DB Local
     // database: "nimbusDB",
