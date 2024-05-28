@@ -8,7 +8,7 @@ class InsereOcorrenciasAlerta{
 
     async inserir(estacao:Estacao, medicoes:Medicao[], tipoParametro:TipoParametro[]){
         const listaOcorrencias = GeraListaOcorrenciaAlerta.criarListaOcorrencia(estacao, medicoes, tipoParametro)
-
+        console.log("LISTA OCORRENCIA ALESTAS", listaOcorrencias)
         if (listaOcorrencias.length === 0) {
             return 'Não há alertas para inserir.';
         }

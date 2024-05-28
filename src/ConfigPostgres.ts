@@ -6,20 +6,21 @@ const DB_URL = process.env.DB_URL_Postgres;
 
 const PgDataSource = new DataSource({
     //DB online elephantSQL
-    //database: 'bqlvykqu',
-    //url:DB_URL,
+    database: 'bqlvykqu',
+    url:DB_URL,
 
     //DB Local
-    database: "nimbusDB",
-    host: "localhost",
-    username: "postgres",
-    port: 5432,
-    password: "postgres",
+    //database: "nimbusDB",
+    //host: "localhost",
+    //username: "postgres",
+    //port: 5432,
+    //password: "postgres",
     type: "postgres", // se for SQLite, então use sqlite
     synchronize: true,
     logging: false, // true indica que as consultas e erros serão exibidas no terminal
     entities: ["src/entities/*.ts"], // entidades que serão convertidas em tabelas
-    migrations: ["src/migrations/*.ts"] // local onde estarão os arquivos de migração
+    migrations: ["src/migrations/*.ts"], // local onde estarão os arquivos de migração
+    
 });
 
 
