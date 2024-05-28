@@ -17,9 +17,11 @@ class TrataMedicao{
             const resultado = await AtualizaBateria.atualizar(medicao, estacao)
             if(resultado == "falha"){console.log("Requisição mal formulada"); return;}
             const tipoParametros = await PegaTipoParatros.pegar(estacao.idEstacao);
+            //console.log("TIPO:", tipoParametros[0].parametros)
             if(tipoParametros == undefined) return;
             let medicoesEstruturadas = EstruturaMedicoes.estruturar(tipoParametros, medicao)
             medicoesEstruturadas = await ConfereMedicaoExistente.conferir(medicoesEstruturadas)
+            console.log("MEdicao ESTRUTURADA:", medicoesEstruturadas)
             if(medicoesEstruturadas.length == 0) return;
             const medicoesComId = await InsereMedicoesNoRelacional.inserir(medicoesEstruturadas);
             await InsereOcorrenciasAlerta.inserir(estacao, medicoesComId, tipoParametros)
