@@ -9,6 +9,8 @@ if(uri==undefined){
 }
 
 const MongoDBOcorrencia = new MongoClient(uri, {
+    connectTimeoutMS: 30000,
+    socketTimeoutMS: 30000,
     serverApi: {
       version: ServerApiVersion.v1,
       strict: true,
