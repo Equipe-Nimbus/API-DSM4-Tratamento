@@ -27,7 +27,6 @@ class PegaTipoParatros {
     if (resultado == 0) { return false; }
     return true
     }
-
 }
 
 export default new PegaTipoParatros()

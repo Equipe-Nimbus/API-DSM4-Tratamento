@@ -4,6 +4,7 @@ import { TipoParametro } from "../entities/TipoParametro";
 import MedicaoMongo from "../interfaces/MedicaoMongo";
 import GeradorTagTemporal from "./GeradorTagTemporal";
 
+
 class EstruturaMedicoes{
     estruturar(tipoParametros:TipoParametro[], medicao:MedicaoMongo):Medicao[]{
         let listaMedicoesRelacionais:Medicao[] = []

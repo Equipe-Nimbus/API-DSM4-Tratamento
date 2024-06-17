@@ -62,4 +62,5 @@ function toFloat(value: string | number): number {
     return typeof value === 'string' ? parseFloat(value) : value;
 }
 
+
 export default new GeraListaOcorrenciaAlerta()

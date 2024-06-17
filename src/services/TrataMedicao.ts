@@ -26,7 +26,7 @@ class TrataMedicao{
             const medicoesComId = await InsereMedicoesNoRelacional.inserir(medicoesEstruturadas);
             await InsereOcorrenciasAlerta.inserir(estacao, medicoesComId, tipoParametros)
         });
-        
+        await DeletaDadosMedicoes.deletar(medicoes);
     }
 }
 

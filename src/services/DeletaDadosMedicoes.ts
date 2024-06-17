@@ -15,7 +15,6 @@ class DeletaDadosMedicoes{
             error.tipo = "Deleção"
             throw error
         }
-        
     }
 
 }

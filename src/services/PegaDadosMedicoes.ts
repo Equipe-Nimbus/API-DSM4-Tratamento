@@ -9,7 +9,6 @@ class PegaDadosMedicoes{
         const colecaoMedicao = MongoDBMedicoes.db("MedicoesNimbus").collection("MedicoesNimbus");
         let medicoes = await colecaoMedicao.find({}).toArray()
         await MongoDBMedicoes.close()
-        console.log("testMedições: ", medicoes)
         return medicoes 
     }
 
