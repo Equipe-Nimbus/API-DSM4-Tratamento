@@ -11,7 +11,7 @@ class GeraListaOcorrenciaAlerta{
         medicoes.forEach(medicao => {
             tipoParametro.forEach(tipoParametroSelecionado => {
                 tipoParametroSelecionado.parametros.forEach(parametro=>{
-                    if(medicao.parametro.idParametro == parametro.idParametro && parametro.alertas.length != 0){
+                    if(medicao.parametro.idParametro == parametro.idParametro && parametro.alertas){
                         parametro.alertas.forEach(alerta=>{
                             const resultado = this.comparacao(estacao, alerta, medicao, tipoParametroSelecionado)
                             listaOcorrencia.push(...resultado)
@@ -27,25 +27,29 @@ class GeraListaOcorrenciaAlerta{
 
     comparacao(estacao:Estacao, alerta:Alerta, medicao:Medicao, tipoParametro:TipoParametro){
         let listaOcorrencia:OcorrenciaAlertaMongo[] = []
+        const fator = toFloat(tipoParametro.fatorTipoParametro);
+        const offset = toFloat(tipoParametro.offsetTipoParametro);
+        const medicaoCorrigida:number = (medicao.valorMedida*fator) + offset
+        console.log("FATOR:", tipoParametro.fatorTipoParametro, typeof(tipoParametro.fatorTipoParametro), "OFFSET:", tipoParametro.offsetTipoParametro, typeof(tipoParametro.offsetTipoParametro), "ORIGINAL:", medicao.valorMedida, typeof(medicao.valorMedida),"MEDICAO CORRIGIDA:", medicaoCorrigida, "MEDICAO ALERTA:", alerta.valorMedicaoAlerta)
         switch(alerta.condicaoAlerta){
             case "<":
-                if (medicao.valorMedida < alerta.valorMedicaoAlerta) {
+                if (medicaoCorrigida < alerta.valorMedicaoAlerta) {
                     listaOcorrencia.push(EstruturaOcorrenciaAlerta.estruturar(alerta, medicao, estacao, tipoParametro))
                 }; break;
             case "<=":
-                if (medicao.valorMedida <= alerta.valorMedicaoAlerta) {
+                if (medicaoCorrigida <= alerta.valorMedicaoAlerta) {
                     listaOcorrencia.push(EstruturaOcorrenciaAlerta.estruturar(alerta, medicao, estacao, tipoParametro))
                 }; break;
             case "=":
-                if (medicao.valorMedida == alerta.valorMedicaoAlerta) {
+                if (medicaoCorrigida == alerta.valorMedicaoAlerta) {
                     listaOcorrencia.push(EstruturaOcorrenciaAlerta.estruturar(alerta, medicao, estacao, tipoParametro))
                 }; break;
             case ">=":
-                if (medicao.valorMedida >= alerta.valorMedicaoAlerta) {
+                if (medicaoCorrigida >= alerta.valorMedicaoAlerta) {
                     listaOcorrencia.push(EstruturaOcorrenciaAlerta.estruturar(alerta, medicao, estacao, tipoParametro))
                 }; break;
             case ">":
-                if (medicao.valorMedida > alerta.valorMedicaoAlerta) {
+                if (medicaoCorrigida > alerta.valorMedicaoAlerta) {
                     listaOcorrencia.push(EstruturaOcorrenciaAlerta.estruturar(alerta, medicao, estacao, tipoParametro))
                 }; break;
         }
@@ -53,5 +57,10 @@ class GeraListaOcorrenciaAlerta{
     }
 
 }
+
+function toFloat(value: string | number): number {
+    return typeof value === 'string' ? parseFloat(value) : value;
+}
+
 
 export default new GeraListaOcorrenciaAlerta()

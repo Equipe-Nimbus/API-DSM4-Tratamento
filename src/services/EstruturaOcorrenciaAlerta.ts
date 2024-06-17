@@ -23,7 +23,7 @@ class EstruturaOcorrenciaAlerta{
         ocorrenciaAlerta.nomeAlerta = alerta.nomeAlerta;
         ocorrenciaAlerta.nomeEstacao = estacao.nomeEstacao;
         ocorrenciaAlerta.nomeTipoParametro = tipoParametro.nomeTipoParametro
-        ocorrenciaAlerta.medicao = medicao.valorMedida
+        ocorrenciaAlerta.medicao = (medicao.valorMedida * toFloat(tipoParametro.fatorTipoParametro)) + toFloat(tipoParametro.offsetTipoParametro)
         ocorrenciaAlerta.valorAlerta = alerta.valorMedicaoAlerta
         ocorrenciaAlerta.condicaoAlerta = alerta.condicaoAlerta;
         ocorrenciaAlerta.unixtime = medicao.unixTime;
@@ -31,6 +31,10 @@ class EstruturaOcorrenciaAlerta{
         return ocorrenciaAlerta
     }
 
+}
+
+function toFloat(value: string | number): number {
+    return typeof value === 'string' ? parseFloat(value) : value;
 }
 
 export default new EstruturaOcorrenciaAlerta()
