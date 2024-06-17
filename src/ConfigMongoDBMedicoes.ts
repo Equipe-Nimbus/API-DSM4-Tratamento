@@ -2,7 +2,7 @@ import { MongoClient, ServerApiVersion } from "mongodb";
 import { config } from "dotenv";
 config();
 
-const uri = process.env.DB_URL_Medidas;
+const uri = process.env.DB_URL_MONGO_BACK;
 
 if(uri==undefined){
     throw new Error("URI do MongoDB não configurada no arquivo .env")

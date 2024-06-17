@@ -8,7 +8,7 @@ config();
 const app = express();
 app.use(express.json());
 const corsOptions = {
-    origin: ['http://localhost:8001'],
+    origin: ['http://recepcao:8001'],
     optionsSuccessStatus: 200 
   };
   
@@ -17,7 +17,7 @@ app.use(cors(corsOptions));
 
 app.use("/tratamento", tratamentoRoutes)
 
-const PORT = process.env.PORT;
+const PORT = 8002;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
